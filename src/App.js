@@ -28,15 +28,16 @@ class App extends Component {
   // add todo to the todo list, save to local storage
   addTodo(e) {
     e.preventDefault()
-    let todo = { id: uuid(), 
-                 text: this.state.value
-    };
-    this.setState({ todoList: this.state.todoList.concat(todo)}, () => {
-      localStorage.setItem('todoList', JSON.stringify(this.state.todoList));
-      this.setState({ value: ''}); // clear input textbox
-    });
-    
-    console.log(this.state.todoList);
+    // do not add empty todo tasks
+    if (this.state.value !== '') {
+      let todo = { id: uuid(), 
+                  text: this.state.value
+      };
+      this.setState({ todoList: this.state.todoList.concat(todo)}, () => {
+        localStorage.setItem('todoList', JSON.stringify(this.state.todoList));
+        this.setState({ value: ''}); // clear input textbox
+      });
+    }
   }
 
   render() {

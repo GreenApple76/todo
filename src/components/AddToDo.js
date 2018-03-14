@@ -10,8 +10,8 @@ class AddToDo extends Component {
         return (
             <div>
                 <form onSubmit={this.props.addTodo}>
-                <input autoFocus id="add-todo" type="text" name="task" value={this.props.state.value} onChange={(e) => { console.log('e: ', e.target.value); this.props.handleChange(e.target.value)}}/>
-                <button>+</button>
+                    <input autoFocus id="add-todo" type="text" name="task" value={this.props.state.value} onChange={(e) => { console.log('e: ', e.target.value); this.props.handleChange(e.target.value)}}/>
+                    <button>+</button>
                 </form>
             </div>
         );

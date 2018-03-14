@@ -18,12 +18,10 @@ class App extends Component {
   this.addTodo = this.addTodo.bind(this);
   }
 
-  // did user type a character into the input box (if so update state)?
-  handleChange(val) {
-    console.log('change occured');
-    console.log('val: ', val);
+  // updates state when user types a character into the input box
+  handleChange(inputValue) {
     this.setState({
-        value: val
+        value: inputValue
     });
 }
 
@@ -31,10 +29,11 @@ class App extends Component {
   addTodo(e) {
     e.preventDefault()
     let todo = { id: uuid(), 
-                 todo: this.state.value
+                 text: this.state.value
     };
     this.setState({ todoList: this.state.todoList.concat(todo)}, () => {
       localStorage.setItem('todoList', JSON.stringify(this.state.todoList));
+      this.setState({ value: ''}); // clear input textbox
     });
     
     console.log(this.state.todoList);
@@ -45,7 +44,7 @@ class App extends Component {
       <div className="App">
         <Title/>
         <AddToDo addTodo={this.addTodo} handleChange={this.handleChange} state={this.state}/>
-        <ToDoList/>
+        <ToDoList state={this.state}/>
       </div>
     );
   }
